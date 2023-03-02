@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>running</h1>
+    <h2 id="h"></h2>
+    <button onclick=fetch("http://127.0.0.1:8000/")>get</button>
+    <script>
+        function scrapeData() {
+            var addresses = [    ['123 Main St', 'Anytown'],
+                ['456 Oak St', 'Somewhere'],
+                ['789 Pine St', 'Nowhere'],
+            ];
+            // var addresses = sheet.getRange("I2:J").getValues();
+            for (var i = 0; i < addresses.length; i++) {
+                var address1 = addresses[i][0];
+                var address2 = addresses[i][1];
+                var completeAddress = address1 + ", " + address2;
+                // your existing code here to enter the complete address on the website
+            }
+            document.getElementById("h").innerHTML = completeAddress;
+            console.log(completeAddress);
+
+
+            // Exit the loop if there is no address in the current cell
+        }
+
+        // scrapeData();
+
+        var url = "http://127.0.0.1:8000/"; // Replace with the URL of the website you want to scrape
+        // var doc = UrlFetchApp.fetch(url).getContentText();
+        // var form = HtmlService.createHtmlOutput(doc);
+        // var addressInput = form.getElementById("input1");
+        // addressInput.setAttribute("value", completeAddress);
+
+        fetch(url)
+            .then(response => response.text())
+            .then(data => {
+                var doc = data;
+                document.getElementById("h").innerHTML = doc
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        
+
+        
+
+        // var addressInput2 = form.getElementById("input2");
+        // addressInput2.setAttribute("value", completeAddress);
+
+
+
+        // var continueButton = form.getElementById("button");
+        // continueButton.click(); // Submit the form to get to the next page
+
+
+
+        // // Wait for the page to load
+        // Utilities.sleep(3000);
+
+
+
+        // // Extract the data from the page
+        // var extractedData1 = form.getElementById("data1Id").innerText;
+        // var extractedData2 = form.getElementById("data2Id").innerText;
+
+        // document.getElementById("h").innerHTML = extractedData1 + extractedData2
+
+
+
+        // Find the link to click to get to the third piece of data
+        // var links = form.getElementsByTagName("td");
+        // var parcelIdLink, gisMapLink;
+
+
+
+        // for (var j = 0; j < links.length; j++) {
+        //     if (links[j].innerText === "Parcel ID") {
+        //         parcelIdLink = links[j];
+        //     } else if (links[j].innerText === "GIS Map") {
+        //         gisMapLink = links[j];
+        //     }
+        // }
+
+
+
+        // var extractedData3;
+        // if (parcelIdLink) {
+        //     parcelIdLink.click();
+        //     extractedData3 = form.getElementById("data3Id").innerText;
+        // } else if (gisMapLink) {
+        //     gisMapLink.click();
+        //     extractedData3 = form.getElementById("data3Id").innerText;
+        // }
+
+
+
+        // // Write the data to the sheet
+        // sheet.getRange(i + 2, 2).setValue(extractedData1);
+        // sheet.getRange(i + 2, 3).setValue(extractedData2);
+        // sheet.getRange(i + 2, 4).setValue(extractedData3);
+    </script>
+</body>
+
+</html> 
